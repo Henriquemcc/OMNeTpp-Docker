@@ -12,7 +12,7 @@ RUN apt update
 # Instalando requisitos
 RUN echo "tzdata tzdata/Areas select America" | debconf-set-selections
 RUN echo "tzdata tzdata/Zones/America select Sao_Paulo" | debconf-set-selections
-RUN DEBIAN_FRONTEND=noninteractive apt install -y x11-apps curl build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev bash pkg-config openscenegraph libopenscenegraph-dev libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libgtk2.0-0 libcanberra-gtk-module fonts-dejavu fontconfig xvfb x11-apps git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc xvfb fluxbox
+RUN DEBIAN_FRONTEND=noninteractive apt install -y x11-apps curl build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev bash pkg-config openscenegraph libopenscenegraph-dev libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libgtk2.0-0 libcanberra-gtk-module fonts-dejavu fontconfig xvfb x11-apps git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc xvfb fluxbox libglew-dev libcurl4-openssl-dev libgdal-dev
 RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth || true
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libosgearth-dev || true
 
@@ -33,8 +33,6 @@ RUN echo ". /omnetpp-6.1/setenv" >> /root/.bashrc
 # Baixando, extraindo e limpando o osgEarth
 RUN DEBIAN_FRONTEND=noninteractive apt install -y unzip cmake
 RUN git clone https://github.com/gwaldron/osgearth.git
-
-RUN DEBIAN_FRONTEND=noninteractive apt install -y libglew-dev libcurl4-openssl-dev libgdal-dev
 WORKDIR /osgearth
 RUN git submodule update --init --recursive
 WORKDIR /osgearth/build
