@@ -27,6 +27,9 @@ RUN python3 -m pip install -r omnetpp-6.1/python/requirements.txt
 # Compilando o OmNet++
 RUN bash -c "cd omnetpp-6.1; source setenv; /bin/bash ./configure; make"
 
+# Configurando arquivo .bashrc
+RUN echo ". /omnetpp-6.1/setenv" >> /root/.bashrc
+
 # Definindo a inicialização
 COPY start.bash start.bash
 CMD ["/bin/bash", "start.bash" ]
