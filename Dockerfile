@@ -44,6 +44,6 @@ RUN make
 RUN make install
 
 # Definindo a inicialização
-COPY start.bash start.bash
 WORKDIR /
+COPY start.bash start.bash
 CMD ["/bin/bash", "start.bash" ]
