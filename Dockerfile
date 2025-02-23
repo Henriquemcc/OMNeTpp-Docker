@@ -20,6 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y libosgearth-dev || true
 WORKDIR /
 RUN git clone https://github.com/gwaldron/osgearth.git
 WORKDIR /osgearth
+RUN git checkout osgearth-3.7
 RUN git submodule update --init --recursive
 WORKDIR /osgearth/build
 RUN cmake ..
