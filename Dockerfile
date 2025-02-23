@@ -27,6 +27,12 @@ RUN cmake ..
 RUN make
 RUN make install
 
+# Baixando e instalando o SUMO
+RUN DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
+RUN add-apt-repository ppa:sumo/stable
+RUN apt update
+RUN DEBIAN_FRONTEND=noninteractive apt install -y sumo
+
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
 RUN curl -L https://github.com/omnetpp/omnetpp/releases/download/omnetpp-6.1.0/omnetpp-6.1.0-linux-x86_64.tgz --output omnetpp-6.1.0-linux-x86_64.tgz
