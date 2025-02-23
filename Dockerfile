@@ -62,4 +62,5 @@ RUN apt install -y xvfb
 RUN apt install -y fluxbox
 ENV DISPLAY :0
 COPY start.bash start.bash
+RUN rm /omnetpp-6.1.0-linux-x86_64.tgz
 CMD ["/bin/bash", "start.bash" ]
