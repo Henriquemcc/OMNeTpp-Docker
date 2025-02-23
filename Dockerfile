@@ -27,6 +27,7 @@ RUN python3 -m pip install -r omnetpp-6.1/python/requirements.txt
 
 # Compilando o OmNet++
 WORKDIR /omnetpp-6.1
+COPY OMNeTpp/configure.user .
 RUN bash -c "source setenv; /bin/bash ./configure; make"
 
 # Configurando arquivo .bashrc
