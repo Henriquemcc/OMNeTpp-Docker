@@ -33,6 +33,7 @@ RUN bash -c "source setenv; /bin/bash ./configure; make"
 RUN echo ". /omnetpp-6.1/setenv" >> /root/.bashrc
 
 # Baixando, extraindo e limpando o osgEarth
+WORKDIR /
 RUN DEBIAN_FRONTEND=noninteractive apt install -y unzip cmake
 RUN git clone https://github.com/gwaldron/osgearth.git
 WORKDIR /osgearth
