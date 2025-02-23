@@ -30,6 +30,19 @@ RUN bash -c "cd omnetpp-6.1; source setenv; /bin/bash ./configure; make"
 # Configurando arquivo .bashrc
 RUN echo ". /omnetpp-6.1/setenv" >> /root/.bashrc
 
+# Baixando, extraindo e limpando o osgEarth
+RUN DEBIAN_FRONTEND=noninteractive apt install -y unzip cmake
+RUN git clone https://github.com/gwaldron/osgearth.git
+
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libglew-dev libcurl4-openssl-dev libgdal-dev
+WORKDIR /osgearth
+RUN git submodule update --init --recursive
+WORKDIR /osgearth/build
+RUN cmake ..
+RUN make
+RUN make install
+
 # Definindo a inicialização
 COPY start.bash start.bash
+WORKDIR /
 CMD ["/bin/bash", "start.bash" ]
