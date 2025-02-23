@@ -17,6 +17,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libosgearth-dev || true
 
 # Baixando, extraindo e limpando o OmNet++
+WORKDIR /
 RUN curl -L https://github.com/omnetpp/omnetpp/releases/download/omnetpp-6.1.0/omnetpp-6.1.0-linux-x86_64.tgz --output omnetpp-6.1.0-linux-x86_64.tgz
 RUN tar -xvf omnetpp-6.1.0-linux-x86_64.tgz
 RUN rm omnetpp-6.1.0-linux-x86_64.tgz
@@ -25,7 +26,8 @@ RUN rm omnetpp-6.1.0-linux-x86_64.tgz
 RUN python3 -m pip install -r omnetpp-6.1/python/requirements.txt
 
 # Compilando o OmNet++
-RUN bash -c "cd omnetpp-6.1; source setenv; /bin/bash ./configure; make"
+WORKDIR /omnetpp-6.1
+RUN bash -c "source setenv; /bin/bash ./configure; make"
 
 # Configurando arquivo .bashrc
 RUN echo ". /omnetpp-6.1/setenv" >> /root/.bashrc
