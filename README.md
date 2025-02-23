@@ -30,5 +30,5 @@ docker run -it --name omnetpp -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home"
 Para se conectar ao terminal deste container, abra um terminal (ou prompt de comando) e digite o seguinte comando:
 
 ```
-docker attach omnetpp
+docker exec -it omnetpp bash
 ```
