@@ -32,7 +32,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb 
 RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake clang libgl1-mesa-dev xorg-dev libopenscenegraph-dev libglew-dev libcurl4-openssl-dev libgdal-dev gdal-bin
 
 # Instalando demais pacotes
-RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox libglew-dev libcurl4-openssl-dev libgdal-dev unzip cmake
+RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox unzip cmake
 
 # Instalando pacotes que podem falhar
 RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth || true
