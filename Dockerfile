@@ -76,8 +76,6 @@ RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
 # Criando script de inicialização
 WORKDIR /
 RUN echo "#!/bin/bash" > start.bash
-RUN echo "x11vnc -create &" >> start.bash
-RUN echo "sleep 15s" >> start.bash
 RUN echo ". ${omnetpp_folder_name}/setenv" >> start.bash
 RUN echo "${omnetpp_folder_name}/bin/opp_ide" >> start.bash
 RUN echo "sleep 1m" >> start.bash
