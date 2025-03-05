@@ -2,7 +2,7 @@
 
 # OMNeT++ - Docker
 
-Rode o OMNet++ com interface gráfica no Docker! Este repositório contém o Dockerfile utilizado para construir um container Docker com o OMNeT++.
+Rode o [OMNet++](https://omnetpp.org) com interface gráfica no Docker! Este repositório contém o Dockerfile utilizado para construir um container Docker com o OMNeT++.
 
 ## Como construir
 

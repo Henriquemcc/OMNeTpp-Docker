@@ -2,7 +2,7 @@
 
 # OMNeT++ - Docker
 
-Run OMNet++ with graphical user interface on Docker! This repository contains the Dockerfile that was used to build a Docker container with OMNeT++.
+Run [OMNet++](https://omnetpp.org) with graphical user interface on Docker! This repository contains the Dockerfile that was used to build a Docker container with OMNeT++.
 
 ## How to build
 
