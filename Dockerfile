@@ -1,8 +1,8 @@
 FROM ubuntu:22.04
 
 # Definindo variáveis de ambiente
-ENV omnetpp_version=6.1.0
-ENV omnetpp_folder_name=omnetpp-6.1
+ENV omnetpp_version=6.0
+ENV omnetpp_folder_name=omnetpp-6.0
 ENV osgEarth_version=3.7
 ENV country_mirror=BR
 ENV region_name=America
@@ -63,11 +63,14 @@ RUN tar -xvf omnetpp-${omnetpp_version}-linux-x86_64.tgz
 RUN rm omnetpp-${omnetpp_version}-linux-x86_64.tgz
 
 # Instalando dependências python
-RUN python3 -m pip install -r ${omnetpp_folder_name}/python/requirements.txt
+RUN python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
 
 # Compilando o OmNet++
 WORKDIR /${omnetpp_folder_name}
 COPY OMNeTpp/configure.user .
+RUN mkdir -p ~/.local/share/applications
+RUN mkdir -p ~/.local/share/desktop-directories
+RUN mkdir -p /usr/share/desktop-directories
 RUN bash -c "source setenv; /bin/bash ./configure; make"
 
 # Configurando arquivo .bashrc
