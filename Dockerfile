@@ -83,13 +83,14 @@ RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
 # Criando script de inicialização
 WORKDIR /
 RUN echo "#!/bin/bash" > start.bash
-RUN echo ". ${omnetpp_folder_name}/setenv" >> start.bash
-RUN echo "${omnetpp_folder_name}/bin/opp_ide" >> start.bash
+RUN echo "cd ${omnetpp_folder_name} || exit 1" >> start.bash
+RUN echo ". setenv" >> start.bash
+RUN echo "./bin/omnetpp" >> start.bash
 RUN echo "sleep 1m" >> start.bash
 RUN echo "while pgrep -x \"opp_ide\" > /dev/null; do" >> start.bash
 RUN echo "sleep 1m" >> start.bash
 RUN echo "done" >> start.bash
 RUN chmod +x start.bash
 
-# Definindo a inicialização
-CMD ["/bin/bash", "start.bash" ]
+# # Definindo a inicialização
+CMD ["/bin/bash", "-i", "start.bash" ]
