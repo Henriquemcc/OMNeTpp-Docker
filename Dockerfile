@@ -62,9 +62,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y sumo
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
-RUN curl -L https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-linux-x86_64.tgz --output omnetpp-${omnetpp_version}-linux-x86_64.tgz
-RUN tar -xvf omnetpp-${omnetpp_version}-linux-x86_64.tgz
-RUN rm omnetpp-${omnetpp_version}-linux-x86_64.tgz
+RUN curl -L https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-src-linux.tgz --output omnetpp-${omnetpp_version}-src-linux.tgz
+RUN tar -xvf omnetpp-${omnetpp_version}-src-linux.tgz
+RUN rm omnetpp-${omnetpp_version}-src-linux.tgz
 
 # Instalando dependências python
 RUN python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
