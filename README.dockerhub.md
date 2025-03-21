@@ -22,6 +22,12 @@ docker pull henriquemcc/omnetpp:omnetv6.1.0-ubuntu22.04-v1
 docker pull henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
 ```
 
+#### OMNeT++ 5.6.2 no Ubuntu 18.04 LTS
+
+```
+docker pull henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
+```
+
 ### Criando o container
 
 Para criar o container Docker com o OMNeT++, em um terminal (ou prompt de comando), digite o seguinte comando para a versão desejada:
@@ -36,6 +42,12 @@ docker run -it --name omnetppv6.1.0 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY
 
 ```
 docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
+```
+
+#### OMNeT++ 5.6.2 no Ubuntu 18.04 LTS
+
+```
+docker run -it --name omnetppv5.6.2 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
 ```
 
 ### Criando o container e montando na pasta atual
@@ -54,6 +66,12 @@ docker run -it --name omnetppv6.1.0 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):
 docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
 ```
 
+#### OMNeT++ 5.6.2 no Ubuntu 18.04 LTS
+
+```
+docker run -it --name omnetppv5.6.2 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
+```
+
 ### Como conectar com o terminal
 
 Para se conectar ao terminal deste container, abra um terminal (ou prompt de comando) e digite o seguinte comando para a versão desejada:
@@ -68,6 +86,12 @@ docker exec -it omnetppv6.1.0 bash
 
 ```
 docker exec -it omnetppv6.0 bash
+```
+
+#### OMNeT++ 5.6.2 no Ubuntu 18.04 LTS
+
+```
+docker exec -it omnetppv5.6.2 bash
 ```
 
 ## English Version
@@ -94,6 +118,12 @@ docker pull henriquemcc/omnetpp:omnetv6.1.0-ubuntu22.04-v1
 docker pull henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
 ```
 
+#### OMNeT++ 5.6.2 on Ubuntu 18.04 LTS
+
+```
+docker pull henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
+```
+
 ### Creating the container
 
 To create the Docker container with OMNeT++, in a terminal (or command prompt), type the following command to the desired version:
@@ -108,6 +138,12 @@ docker run -it --name omnetppv6.1.0 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY
 
 ```
 docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
+```
+
+#### OMNeT++ 5.6.2 on Ubuntu 18.04 LTS
+
+```
+docker run -it --name omnetppv5.6.2 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
 ```
 
 ### Creating the container and mounting the current folder
@@ -126,6 +162,12 @@ docker run -it --name omnetppv6.1.0 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):
 docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-ubuntu22.04-v1
 ```
 
+#### OMNeT++ 5.6.2 on Ubuntu 18.04 LTS
+
+```
+docker run -it --name omnetppv5.6.2 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv5.6.2-ubuntu18.04-v1
+```
+
 ### How to connect to the terminal
 
 To connect to the terminal from this container, open a terminal (or command prompt) and type the following command for the desired version:
@@ -140,4 +182,10 @@ docker exec -it omnetppv6.1.0 bash
 
 ```
 docker exec -it omnetppv6.0 bash
+```
+
+#### OMNeT++ 5.6.2 on Ubuntu 18.04 LTS
+
+```
+docker exec -it omnetppv5.6.2 bash
 ```
