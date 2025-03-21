@@ -87,7 +87,7 @@ RUN echo "cd ${omnetpp_folder_name} || exit 1" >> start.bash
 RUN echo ". setenv" >> start.bash
 RUN echo "./bin/omnetpp" >> start.bash
 RUN echo "sleep 1m" >> start.bash
-RUN echo "while pgrep -x \"opp_ide\" > /dev/null; do" >> start.bash
+RUN echo "while pgrep -x \"omnetpp\" > /dev/null; do" >> start.bash
 RUN echo "sleep 1m" >> start.bash
 RUN echo "done" >> start.bash
 RUN chmod +x start.bash
