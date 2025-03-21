@@ -1,9 +1,9 @@
-FROM ubuntu:22.04
+FROM ubuntu:18.04
 
 # Definindo variáveis de ambiente
-ENV omnetpp_version=6.0
-ENV omnetpp_folder_name=omnetpp-6.0
-ENV osgEarth_version=3.7
+ENV omnetpp_version=5.6.2
+ENV omnetpp_folder_name=omnetpp-5.6.2
+ENV osgEarth_version=2.10.1
 ENV country_mirror=BR
 ENV region_name=America
 ENV city_name=Sao_Paulo
@@ -26,18 +26,22 @@ RUN echo "tzdata tzdata/Zones/${region_name} select ${city_name}" | debconf-set-
 RUN DEBIAN_FRONTEND=noninteractive apt install -y x11-apps mesa-utils libgl1-mesa-glx libgtk2.0-0 libqt5gui5 libglu1-mesa
 
 # Instalando pacotes para compilar o OMNeT++
-RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev
+RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential gcc g++ bison flex perl python python3 qt5-default libqt5opengl5-dev tcl-dev tk-dev libxml2-dev zlib1g-dev default-jre doxygen graphviz libwebkitgtk-3.0-0 
 
 # Instalando pacotes para compilar o osgEarth
 RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake clang libgl1-mesa-dev xorg-dev libopenscenegraph-dev libglew-dev libcurl4-openssl-dev libgdal-dev gdal-bin
 
 # Instalando demais pacotes
-RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox unzip cmake
+RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox unzip cmake python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev
 
 # Instalando pacotes que podem falhar
 RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth || true
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libosgearth-dev || true
 RUN DEBIAN_FRONTEND=noninteractive apt install -y nemiver || true
+RUN DEBIAN_FRONTEND=noninteractive apt install -y openmpi-bin || true
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libopenmpi-dev || true
+RUN DEBIAN_FRONTEND=noninteractive apt install -y libpcap-dev || true
+RUN DEBIAN_FRONTEND=noninteractive apt install -y gnome-color-chooser || true
 
 # Baixando, extraindo e limpando o osgEarth
 WORKDIR /
