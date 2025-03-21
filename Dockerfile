@@ -75,7 +75,7 @@ COPY OMNeTpp/configure.user .
 RUN mkdir -p ~/.local/share/applications
 RUN mkdir -p ~/.local/share/desktop-directories
 RUN mkdir -p /usr/share/desktop-directories
-RUN bash -c "export PATH=/omnetpp-5.6.2/bin:$PATH; /bin/bash ./configure; make"
+RUN bash -c "export PATH=/omnetpp-5.6.2/bin:$PATH; ./configure; make"
 
 # Configurando arquivo .bashrc
 RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
