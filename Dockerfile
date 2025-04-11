@@ -56,7 +56,7 @@ RUN make install
 
 # Baixando, compilando e instalando o SUMO
 WORKDIR /
-RUN git clone git@github.com:eclipse-sumo/sumo.git
+RUN git clone https://github.com/eclipse-sumo/sumo.git
 WORKDIR /sumo
 RUN git checkout ${sumo_version}
 ENV SUMO_HOME=/sumo
