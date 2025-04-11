@@ -66,7 +66,7 @@ RUN make -j$(nproc)
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
-RUN curl -L https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-linux-x86_64.tgz --output omnetpp-${omnetpp_version}-linux-x86_64.tgz
+ADD https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-linux-x86_64.tgz omnetpp-${omnetpp_version}-linux-x86_64.tgz
 RUN tar -xvf omnetpp-${omnetpp_version}-linux-x86_64.tgz
 RUN rm omnetpp-${omnetpp_version}-linux-x86_64.tgz
 
