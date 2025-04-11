@@ -4,6 +4,7 @@ FROM ubuntu:22.04
 ENV omnetpp_version=6.0
 ENV omnetpp_folder_name=omnetpp-6.0
 ENV osgEarth_version=3.7
+ENV sumo_version=v1_11_0
 ENV country_mirror=BR
 ENV region_name=America
 ENV city_name=Sao_Paulo
@@ -31,6 +32,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb 
 # Instalando pacotes para compilar o osgEarth
 RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake clang libgl1-mesa-dev xorg-dev libopenscenegraph-dev libglew-dev libcurl4-openssl-dev libgdal-dev gdal-bin
 
+# Instalando pacotes para compilar o SUMO
+RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake python g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
+
 # Instalando demais pacotes
 RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox unzip cmake
 
@@ -50,11 +54,15 @@ RUN cmake ..
 RUN make
 RUN make install
 
-# Baixando e instalando o SUMO
-RUN DEBIAN_FRONTEND=noninteractive apt install -y software-properties-common
-RUN add-apt-repository ppa:sumo/stable
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y sumo
+# Baixando, compilando e instalando o SUMO
+WORKDIR /
+RUN git clone git@github.com:eclipse-sumo/sumo.git
+WORKDIR /sumo
+RUN git checkout ${sumo_version}
+ENV SUMO_HOME=/sumo
+WORKDIR /sumo/build/cmake-build
+RUN cmake ../..
+RUN make -j$(nproc)
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
