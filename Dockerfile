@@ -24,7 +24,7 @@ RUN echo "tzdata tzdata/Areas select ${region_name}" | debconf-set-selections
 RUN echo "tzdata tzdata/Zones/${region_name} select ${city_name}" | debconf-set-selections
 
 # Instalando pacotes para interface gráfica
-RUN DEBIAN_FRONTEND=noninteractive apt install -y x11-apps mesa-utils libgl1-mesa-glx libgtk2.0-0 libqt5gui5 libglu1-mesa
+RUN DEBIAN_FRONTEND=noninteractive apt install -y x11-apps mesa-utils libgl1-mesa-glx libgtk2.0-0 libqt5gui5 libglu1-mesa mesa-vulkan-drivers libgl1-mesa-dri
 
 # Instalando pacotes para compilar o OMNeT++
 RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev
@@ -88,6 +88,7 @@ RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
 WORKDIR /
 RUN echo "#!/bin/bash" > start.bash
 RUN echo ". ${omnetpp_folder_name}/setenv" >> start.bash
+RUN echo "export LIBGL_ALWAYS_SOFTWARE=1" >> start.bash
 RUN echo "${omnetpp_folder_name}/bin/opp_ide" >> start.bash
 RUN echo "sleep 1m" >> start.bash
 RUN echo "while pgrep -x \"opp_ide\" > /dev/null; do" >> start.bash
