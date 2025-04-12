@@ -67,6 +67,7 @@ ENV SUMO_HOME=/sumo
 WORKDIR /sumo/build/cmake-build
 RUN cmake ../..
 RUN make -j$(nproc)
+RUN ln --symbolic /sumo /usr/share/sumo
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
