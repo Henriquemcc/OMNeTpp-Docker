@@ -1,10 +1,9 @@
 FROM ubuntu:22.04
 
 # Definindo variáveis de ambiente
-ENV omnetpp_version=6.0
-ENV omnetpp_folder_name=omnetpp-6.0
-ENV osgEarth_version=3.7
-ENV sumo_version=v1_11_0
+ENV omnetpp_version=4.4.2
+ENV omnetpp_folder_name=omnetpp-4.4.2
+ENV sumo_version=v0_25_0
 ENV country_mirror=BR
 ENV region_name=America
 ENV city_name=Sao_Paulo
@@ -31,10 +30,7 @@ ENV LIBGL_ALWAYS_SOFTWARE=1
 ENV LIBGL_DRI3_DISABLE=1
 
 # Instalando pacotes para compilar o OMNeT++
-RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev
-
-# Instalando pacotes para compilar o osgEarth
-RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake clang libgl1-mesa-dev xorg-dev libopenscenegraph-dev libglew-dev libcurl4-openssl-dev libgdal-dev gdal-bin
+RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev gcc g++ tcl-dev tk-dev blt default-jre openmpi-bin libopenmpi-dev libpcap-dev
 
 # Instalando pacotes para compilar o SUMO
 RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake python3 g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
@@ -46,17 +42,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-
 RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth || true
 RUN DEBIAN_FRONTEND=noninteractive apt install -y libosgearth-dev || true
 RUN DEBIAN_FRONTEND=noninteractive apt install -y nemiver || true
-
-# Baixando, extraindo e limpando o osgEarth
-WORKDIR /
-RUN git clone https://github.com/gwaldron/osgearth.git
-WORKDIR /osgearth
-RUN git checkout osgearth-${osgEarth_version}
-RUN git submodule update --init --recursive
-WORKDIR /osgearth/build
-RUN cmake ..
-RUN make
-RUN make install
 
 # Baixando, compilando e instalando o SUMO
 WORKDIR /
@@ -71,9 +56,9 @@ RUN ln --symbolic /sumo /usr/share/sumo
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
-ADD https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-linux-x86_64.tgz omnetpp-${omnetpp_version}-linux-x86_64.tgz
-RUN tar -xvf omnetpp-${omnetpp_version}-linux-x86_64.tgz
-RUN rm omnetpp-${omnetpp_version}-linux-x86_64.tgz
+ADD https://github.com/omnetpp/omnetpp/releases/download/omnetpp-${omnetpp_version}/omnetpp-${omnetpp_version}-src.tgz omnetpp-${omnetpp_version}-src.tgz
+RUN tar -xvf omnetpp-${omnetpp_version}-src.tgz
+RUN rm omnetpp-${omnetpp_version}-src.tgz
 
 # Instalando dependências python
 RUN python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
