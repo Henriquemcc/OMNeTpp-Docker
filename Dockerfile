@@ -79,6 +79,11 @@ RUN bash -c "source setenv && NO_TCL=1 ./configure && make"
 # Configurando arquivo .bashrc
 RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
 
+# Instalando e configurando o java
+RUN DEBIAN_FRONTEND=noninteractive apt install -y openjdk-8-jdk
+ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+ENV PATH=$JAVA_HOME/bin:$PATH
+
 # Criando script de inicialização
 WORKDIR /
 RUN echo "#!/bin/bash" > start.bash
