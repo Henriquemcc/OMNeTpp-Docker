@@ -73,7 +73,8 @@ COPY OMNeTpp/configure.user .
 RUN mkdir -p ~/.local/share/applications
 RUN mkdir -p ~/.local/share/desktop-directories
 RUN mkdir -p /usr/share/desktop-directories
-RUN bash -c "source setenv; /bin/bash ./configure; make"
+RUN DEBIAN_FRONTEND=noninteractive apt install -y xvfb
+RUN bash -c "source setenv; Xvfb :99 & XVFB_PID=$! && export DISPLAY=:99 && ./configure && kill $XVFB_PID && make"
 
 # Configurando arquivo .bashrc
 RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
