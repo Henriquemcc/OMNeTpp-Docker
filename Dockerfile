@@ -74,7 +74,8 @@ RUN mkdir -p ~/.local/share/applications
 RUN mkdir -p ~/.local/share/desktop-directories
 RUN mkdir -p /usr/share/desktop-directories
 RUN DEBIAN_FRONTEND=noninteractive apt install -y xvfb
-RUN bash -c "source setenv; Xvfb :99 & XVFB_PID=$! && export DISPLAY=:99 && ./configure && kill $XVFB_PID && make"
+ENV TCL_LIBRARY=/usr/share/tcltk/tcl8.6
+RUN bash -c 'Xvfb :0 & XVFB_PID=$! && export DISPLAY=:0 && sleep 2 && source setenv && ./configure && make && kill $XVFB_PID'
 
 # Configurando arquivo .bashrc
 RUN echo ". /${omnetpp_folder_name}/setenv" >> /root/.bashrc
