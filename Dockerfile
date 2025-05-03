@@ -48,11 +48,11 @@ WORKDIR /
 RUN git clone https://github.com/eclipse-sumo/sumo.git
 WORKDIR /sumo
 RUN git checkout ${sumo_version}
-ENV SUMO_HOME=/sumo
-WORKDIR /sumo/build/cmake-build
-RUN cmake ../..
-RUN make -j$(nproc)
-RUN ln --symbolic /sumo /usr/share/sumo
+ENV SUMO_HOME=/sumo/sumo
+WORKDIR /sumo/sumo
+RUN make -f Makefile.cvs
+RUN bash -c "./configure && make"
+RUN ln --symbolic /sumo/sumo /usr/share/sumo
 
 # Baixando, extraindo e limpando o OmNet++
 WORKDIR /
