@@ -33,7 +33,7 @@ ENV LIBGL_DRI3_DISABLE=1
 RUN DEBIAN_FRONTEND=noninteractive apt install -y build-essential clang lld gdb bison flex perl python3 python3-pip libpython3-dev qtbase5-dev qtchooser qt5-qmake qtbase5-dev-tools libqt5opengl5-dev libxml2-dev zlib1g-dev doxygen graphviz libwebkit2gtk-4.1-0 xdg-utils libdw-dev mpi-default-dev openscenegraph libopenscenegraph-dev gcc g++ tcl-dev tk-dev blt default-jre openmpi-bin libopenmpi-dev libpcap-dev
 
 # Instalando pacotes para compilar o SUMO
-RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake python3 g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig libgtest-dev build-essential
+RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake python3 g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig libgtest-dev build-essential python-is-python3
 
 # Instalando demais pacotes
 RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn python3-posix-ipc tzdata x11vnc fluxbox unzip cmake
