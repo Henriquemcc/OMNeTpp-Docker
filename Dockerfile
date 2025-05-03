@@ -65,7 +65,7 @@ RUN tar -xvf omnetpp-${omnetpp_version}-src.tgz
 RUN rm omnetpp-${omnetpp_version}-src.tgz
 
 # Instalando dependências python
-RUN python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
+RUN python3 -m pip install --user numpy pandas matplotlib scipy seaborn posix_ipc
 
 # Compilando o OmNet++
 WORKDIR /${omnetpp_folder_name}
