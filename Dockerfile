@@ -52,6 +52,7 @@ ENV SUMO_HOME=/sumo/sumo
 WORKDIR /sumo/sumo
 RUN sed -i 's/\bHUGE\b/HUGE_VAL/g' /sumo/sumo/src/foreign/eulerspiral/BiArc.cpp
 RUN sed -i '1i#include <cmath>' /sumo/sumo/src/foreign/eulerspiral/BiArc.cpp
+ENV CXXFLAGS="-std=c++14"
 RUN make -f Makefile.cvs
 RUN bash -c "./configure && make"
 RUN ln --symbolic /sumo/sumo /usr/share/sumo
