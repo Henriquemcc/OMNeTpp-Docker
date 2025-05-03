@@ -15,6 +15,7 @@ To download the Docker image, on a terminal (or command prompt), type the follow
 | OMNeT++ | osgEarth | SUMO   | Ubuntu    | Command                                                                                 |
 |---------|----------|--------|-----------|-----------------------------------------------------------------------------------------|
 | 6.0     | 3.7      | 1.11.0 | 22.04 LTS | ```docker pull henriquemcc/omnetpp:omnetv6.0-sumov1.11.0-osgearthv3.7-ubuntu22.04-v1``` |
+| 4.4.2   |          | 0.25.0 | 22.04 LTS | ```docker pull henriquemcc/omnetpp:omnetv4.4.2-sumov0.25.0-ubuntu22.04```               |
 
 ### Creating the container
 
@@ -23,6 +24,7 @@ To create the Docker container with OMNeT++, in a terminal (or command prompt), 
 | OMNeT++ | osgEarth | SUMO   | Ubuntu    | Command                                                                                                                                                                      |
 |---------|----------|--------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 6.0     | 3.7      | 1.11.0 | 22.04 LTS | ```docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-sumov1.11.0-osgearthv3.7-ubuntu22.04-v1``` |
+| 4.4.2   |          | 0.25.0 | 22.04 LTS | ```docker run -it --name omnetppv4.4.2 -v /tmp/.X11-unix:/tmp/.X11-unix -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv4.4.2-sumov0.25.0-ubuntu22.04```             |
 
 ### Creating the container and mounting the current folder
 
@@ -31,14 +33,16 @@ To create the Docker container with OMNeT++, mounting the current folder, in a t
 | OMNeT++ | osgEarth | SUMO   | Ubuntu    | Command                                                                                                                                                                                        |
 |---------|----------|--------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 6.0     | 3.7      | 1.11.0 | 22.04 LTS | ```docker run -it --name omnetppv6.0 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv6.0-sumov1.11.0-osgearthv3.7-ubuntu22.04-v1``` |
+| 4.4.2   |          | 0.25.0 | 22.04 LTS | ```docker run -it --name omnetppv4.4.2 -v /tmp/.X11-unix:/tmp/.X11-unix -v "$(pwd):/home" -e "DISPLAY=${DISPLAY:-:0.0}" henriquemcc/omnetpp:omnetv4.4.2-sumov0.25.0-ubuntu22.04```             |
 
 ### How to connect to the terminal
 
 To connect to the terminal from this container, open a terminal (or command prompt) and type the following command for the desired version:
 
-| OMNeT++ | osgEarth | SUMO   | Ubuntu    | Command                                |
-|---------|----------|--------|-----------|----------------------------------------|
-| 6.0     | 3.7      | 1.11.0 | 22.04 LTS | ```docker exec -it omnetppv6.0 bash``` |
+| OMNeT++ | osgEarth | SUMO   | Ubuntu    | Command                                  |
+|---------|----------|--------|-----------|------------------------------------------|
+| 6.0     | 3.7      | 1.11.0 | 22.04 LTS | ```docker exec -it omnetppv6.0 bash```   |
+| 4.4.2   |          | 0.25.0 | 22.04 LTS | ```docker exec -it omnetppv4.4.2 bash``` |
 
 ## Build and run the image from the Dockerfile
 
