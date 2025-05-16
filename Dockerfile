@@ -35,7 +35,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake clang libgl1-mesa-dev xo
 RUN DEBIAN_FRONTEND=noninteractive apt install -y cmake python3 g++ libxerces-c-dev libfox-1.6-dev libgdal-dev libproj-dev libgl2ps-dev swig
 
 # Instalando demais pacotes
-RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make python3-pandas python3-numpy python3-matplotlib python3-scipy python3-seaborn tzdata x11vnc fluxbox unzip cmake
+RUN DEBIAN_FRONTEND=noninteractive apt install -y curl bash pkg-config libgtk-3-0 libgtk-3-bin libgtk-3-common libglib2.0-bin libgdk-pixbuf2.0-0 libcanberra-gtk3-module libcanberra-gtk-module fonts-dejavu fontconfig xvfb git wget ca-certificates make tzdata x11vnc fluxbox unzip cmake
 
 # Instalando pacotes que podem falhar
 RUN DEBIAN_FRONTEND=noninteractive apt install -y openscenegraph-plugin-osgearth || true
@@ -71,10 +71,14 @@ RUN tar -xvf omnetpp-${omnetpp_version}-linux-x86_64.tgz
 RUN rm omnetpp-${omnetpp_version}-linux-x86_64.tgz
 
 # Instalando dependências python
-RUN python3 -m pip install --user --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
+RUN DEBIAN_FRONTEND=noninteractive apt install -y python3-pip python3-venv
+RUN python3 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN python3 -m pip install --upgrade numpy pandas matplotlib scipy seaborn posix_ipc
 
 # Compilando o OmNet++
 WORKDIR /${omnetpp_folder_name}
+RUN python3 -m pip install -r python/requirements.txt
 COPY OMNeTpp/configure.user .
 RUN mkdir -p ~/.local/share/applications
 RUN mkdir -p ~/.local/share/desktop-directories
