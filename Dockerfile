@@ -4,7 +4,7 @@ FROM debian:12.10
 ENV omnetpp_version=6.1.0
 ENV omnetpp_folder_name=omnetpp-6.1
 ENV osgEarth_version=3.7
-ENV sumo_version=v1_11_0
+ENV sumo_version=v1_22_0
 ENV country_mirror=br
 ENV region_name=America
 ENV city_name=Sao_Paulo
