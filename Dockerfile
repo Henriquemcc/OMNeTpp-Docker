@@ -1,22 +1,17 @@
-FROM ubuntu:22.04
+FROM debian:12.10
 
 # Definindo variáveis de ambiente
-ENV omnetpp_version=6.0
-ENV omnetpp_folder_name=omnetpp-6.0
+ENV omnetpp_version=6.1.0
+ENV omnetpp_folder_name=omnetpp-6.1
 ENV osgEarth_version=3.7
 ENV sumo_version=v1_11_0
-ENV country_mirror=BR
+ENV country_mirror=br
 ENV region_name=America
 ENV city_name=Sao_Paulo
 ENV DISPLAY=:0
 
 # Alterando o Mirror
-RUN apt update
-RUN DEBIAN_FRONTEND=noninteractive apt install -y apt-transport-mirrors || true
-RUN DEBIAN_FRONTEND=noninteractive apt install -y apt-transport-https || true
-RUN DEBIAN_FRONTEND=noninteractive apt install -y apt-utils || true
-RUN DEBIAN_FRONTEND=noninteractive apt install -y apt-mirror || true
-RUN sed -i "s/http:\/\/archive.ubuntu.com\/ubuntu\//mirror:\/\/mirrors.ubuntu.com\/${country_mirror}.txt/g" "/etc/apt/sources.list"
+RUN sed -i "s/deb.debian.org\/debian/ftp.${country_mirror}.debian.org\/debian/g" "/etc/apt/sources.list.d/debian.sources"
 RUN apt update
 
 # Definindo região geográfica
